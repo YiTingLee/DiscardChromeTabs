@@ -1,0 +1,9 @@
+{
+  "name": "Discard Chrome Tabs Automatically",
+  "description": "Discard Chrome Tabs Automatically",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  }
+}
