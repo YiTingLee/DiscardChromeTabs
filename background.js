@@ -4,7 +4,8 @@ const refreshTime = 60 * 60 * 1000;
 const active = {};
 
 const registerTabs = () => {
-  chrome.tabs.query({ discarded: false }, (tabs) => {
+  chrome.tabs.query({}, (tabs) => {
+    console.log("register!");
     tabs.forEach((tab) => {
       if (!windows[tab.windowId]) {
         windows[tab.windowId] = {};
@@ -16,6 +17,8 @@ const registerTabs = () => {
 
 const discardTabsCronJob = () => {
   setInterval(() => {
+    console.log("discard");
+    console.log("windows: ", windows);
     const time = new Date().getTime();
     Object.keys(windows).forEach((windowId) => {
       Object.keys(windows[windowId]).forEach((tabId) => {
@@ -60,3 +63,4 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 
 discardTabsCronJob();
 registerTabsCronJob();
+console.log("start");
